@@ -91,6 +91,7 @@ class TelegramBot extends EventEmitter {
     const callbackQuery = update.callback_query;
     const channelPost = update.channel_post;
     const editedChannelPost = update.edited_channel_post;
+    const preCheckoutQuery = update.pre_checkout_query;
 
     if (message) {
       debug('Process Update message %j', message);
@@ -152,6 +153,8 @@ class TelegramBot extends EventEmitter {
     } else if (editedChannelPost) {
       debug('Process Update edited_channel_post %j', editedChannelPost);
       this.emit('edited_channel_post', editedChannelPost);
+    } else if (preCheckoutQuery) {
+      this.emit('pre_checkout_query', preCheckoutQuery);
     }
   }
 
